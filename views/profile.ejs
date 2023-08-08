@@ -1,0 +1,57 @@
+<%- include('parts/header')  %> 
+   
+<%- include('parts/navpar')  %> 
+<div class="container"> <h2>wellcome</h2>
+    <h1><%= name%></h1></div>
+    <%if(checkerr){%>
+      <h3><%=checkerr%></h3>
+      <%}%>
+
+
+
+<br>
+<br>
+<div class="container">
+  <%if(!cart){%>
+   <h1> no cart here</h1>
+  <%}else{%>
+  
+<table class="table table-bordered " >
+    <thead class="thead" style="background-color:dimgrey; color: aliceblue;">
+      <tr>
+        <th scope="col ">#</th>
+        <th scope="col ">prodduct name</th>
+        <th scope="col ">qnt</th>
+        <th scope="col">price</th>
+        
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+        <%for(let product of cart.product){%>
+           
+            
+            
+
+      <tr>
+        <th class="col col-3" scope="row"><%= cart.product.indexOf(product)+1%></th>
+        <td class="col col-3"><span style=" font-weight: bold; background-color:cadetblue"><%=product.name%></span><a href="/delet/product/<%= cart.product.indexOf(product)%>" style="line-height: .6;float: right;" class="btn  btn-danger">delet</a></td>
+        <td class="col col-3"><a style=" line-height: .6; float: left;" href="/qnt/decrease/<%= cart.product.indexOf(product)%>"class="btn btn-info <%=product.qnt==1? 'disabled':'' %>">-</a><%=product.qnt%> <a style=" line-height: .6;float: right;" href="/qnt/increase/<%= cart.product.indexOf(product)%>" class="btn btn-info ">+</a></td>
+        <td class="col col-3"><%=product.price%></td>
+      </tr>
+      
+      <%}%>
+      <tr>
+        <th style="background-color:darkgray"> the total price :</th>
+        <td colspan="2"></td>
+        <td style="background-color: darkgray;"><%=cart.price%></td>
+      </tr>
+  </table>
+
+  <a href="/checkbox/card" class="btn btn-success"> checbox</a>
+</div>
+  
+<% }%>
+<%- include('parts/footer')  %>  
+
+
+

@@ -1,0 +1,96 @@
+<%- include('parts/header') %> 
+<%- include('parts/navpar') %>
+<div class="container">
+  <h2>wellcome</h2>
+
+  <br />
+  <br />
+
+
+  <%if (errmesage){%>
+    <div class="alert alert-danger"><%=errmesage%></div>
+    <%}%>
+  <div class="col-md-6 offset-md-3">
+    <div id="payment-errors" class="alert alert-danger d-none"></div>
+
+    <form action="/checkbox/card" method="post" id="checkout-form">
+
+      <div style="margin: 10px">
+        <label>enter adress</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="enter address"
+          class="form-control"
+        />
+      </div>
+      <div style="margin: 10px">
+        <label>enter adress</label>
+        <input
+          type="text"
+          name="address"
+          placeholder="enter address"
+          class="form-control"
+        />
+      </div>
+      <div style="margin: 10px" class="">
+        <label>card number</label>
+        <input
+          type="number"
+          
+          placeholder="card number"
+          class="form-control card-number"
+        />
+      </div>
+      <div style="margin: 10px" class="">
+        <label>card year expaire</label>
+        <input
+          type="text"
+          
+          placeholder="card year expaire"
+          class="form-control card-expiry-year"
+        />
+      </div>
+
+      <div style="margin: 10px" class="">
+        <label>month expaire</label>
+        <input
+          type="text"
+         
+          placeholder="month expaire"
+          class="form-control card-expiry-month"
+        />
+      </div>
+
+      <div class="">
+        <label>CVC</label>
+        <input
+          type="text"
+          
+          placeholder="enter address"
+          class="form-control card-cvc "
+        />
+      </div>
+      <div style="text-align: center; margin: 15px">
+        <button  id="button" type="submit" class="btn btn-success"> paid <%= cart.price%>$</button>
+      </div>
+    </form>
+  </div>
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
+
+  <script src="https://js.stripe.com/v2"></script>
+  <script src="https://js.stripe.com/v3"></script>
+
+  <script src="/checkout.js"></script>
+
+ 
+
+
+
+
+  </body>
+
+</html>
+
+

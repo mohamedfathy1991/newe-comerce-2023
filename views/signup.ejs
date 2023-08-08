@@ -1,0 +1,64 @@
+<%- include('parts/header')  %>    
+
+<%- include('parts/navpar')  %> 
+
+        
+        <div class="row">
+            <div class="container text-center col col-6 ">
+                <h3>  create account</h3>
+                
+                    <h3><%=error%></h3>
+                   
+                <form action="/users/sinup" method="POST">
+                    <input type="text" class="form-control" name="name" placeholder="enter your name">
+                    <%let erroname = valerr.find(x => x.path =='name' )  %>
+                    <%if(erroname) {%>
+                        <p class="alert alert-danger">
+                            <%= erroname.msg   %> </p>
+                    <% }%>
+                    <input type="email" class="form-control" name="email" placeholder="email">
+                 
+                    <%let erremail = valerr.find(x => x.path =='email' )  %>
+                    <%if(erremail) {%>
+                        <p class="alert alert-danger">
+                            <%= erremail.msg   %> </p>
+                    <% }%>
+                    <input type="password" class="form-control" name="password" placeholder="password">
+                    <%let erropassword = valerr.find(x => x.path =='password' )  %>
+                    <%if(erropassword) {%>
+                        <p class="alert alert-danger">
+                            <%= erropassword.msg   %> </p>
+                    <% }%>
+                    <input type="password" class="form-control" name="confirm-password" placeholder="confirm password">
+                    <%let erroconfirmpassword = valerr.find(x => x.path =='confirm-password' )  %>
+                    <%if(erroconfirmpassword) {%>
+                        <p class="alert alert-danger">
+                            <%= erroconfirmpassword.msg   %> </p>
+                    <% }%>
+                    <input id="aa" type="submit"  value="ctreate account" class="btn btn-primary">
+
+                    <input type="hidden" name="_csrf" value="<%=token%>">
+
+                </form>
+            </div>
+                <br>
+                
+
+                <br>
+
+
+
+                
+                  
+             
+    </div>
+    
+
+
+    
+
+
+<%- include('parts/footer')  %>  
+
+
+

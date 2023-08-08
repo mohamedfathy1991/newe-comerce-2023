@@ -1,0 +1,63 @@
+body {
+  
+   
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.card img{
+  width: 200px;
+ }
+ .card-text{
+  font-size: 17px;
+ }
+ .price-card-body{
+   display: flex;
+
+   justify-content: space-around;
+ }
+ .price{
+
+
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  color:blue
+ }
+ .buy{margin-bottom: 20px;}
+
+ #navbarDropdown{
+  color: black;
+  font-weight: bold;
+ }
+ #navbarDropdown:focus{
+  padding-right: 30px;
+ }
+ #navbarDropdown:hover{
+  background-color: #198754;
+  font-weight: bold;
+  color: aliceblue;
+
+ }
+ /* refer to nav par nenu */
+ .dropdown-item:hover{
+   background-color:  #617b94;
+   font-weight: bolder;
+  
+ }
+ 
+ a:hover{
+  color: black;
+ }
+ /* return to menu icn in vav par */
+ .rh {
+  padding-right: 20px;
+  padding-left: 3px;
+ }
+
+ .btn-outline-success{
+  color: black;
+ }

@@ -1,0 +1,70 @@
+<%- include('parts/header')%>
+<%- include('parts/navpar')%>
+
+
+<form action="/gmail">
+  <label for="gsearch">Search Google:</label>
+  <input type="text" id="gsearch" name="gsearch">
+  <input type="submit">
+</form>
+
+<div class="row">
+  <%if(successpayment){%>
+    <div class="alert alert-success"><%=successpayment%></div>
+    <%}%>
+<%for (let product of products){%>
+  
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="container">
+      <div class="card" style="width: 18rem">
+        <img src="/images/<%=product.image%>" class="img" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title"><%=product.name%></h5>
+          <p class="card-text">
+             memory size:<%=product.information.memopry%>
+          </p>
+        </div>
+
+        <div class="price-card-body">
+    
+          <div class="price">price: <%=product.price%>$</div>
+          <% if(checklogin){%>
+           
+          <a href="cart/<%=product.price%>/<%=product._id%>/<%=product.name%>"> <div  class="buy btn btn-success">buy</div></a>
+      <%}else{%>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  buy
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">please sign in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        please sinin or sinup
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss<="modal">Close</button>
+        <a href="/users/sinin"><button type="button" class="btn btn-primary">sinin</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+  
+        <%}%> 
+ 
+           
+         </div>
+      </div>
+    </div>
+  </div>
+  <%}%>
+                                                                                                           
+<%- include('parts/footer')%>

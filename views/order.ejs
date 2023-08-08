@@ -1,0 +1,260 @@
+<%- include('parts/header') %> <%- include('parts/navpar') %>
+
+<input type="hiden" value="<%=validationerr%>" id="validationerr">
+
+<div style="padding-left: 20px" class="row">
+  <div class="details col col-2">
+    <h3>username</h3>
+    <img
+      id="image"
+      style="width: 200px"
+      src="	https://www.nretnil.com/avatar/LawrenceEzekielAmos.png"
+      alt="..."
+    />
+    <br /><br /><br />
+    <input type="file" id="imagefile" />
+    <div id="saveimage" class="d-none">
+      <a class="btn btn-success">save</a>
+      <a href="/myorder" class="btn btn-danger">cancle</a>
+    </div>
+  </div>
+
+  <div class="order col col-9 offset-1">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button
+          class="nav-link active"
+          id="nav-home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-home"
+          type="button"
+          role="tab"
+          aria-controls="nav-home"
+          aria-selected="true"
+        >
+          Home
+        </button>
+        <button
+          class="nav-link"
+          id="nav-profile-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-profile"
+          type="button"
+          role="tab"
+          aria-controls="nav-profile"
+          aria-selected="false"
+        >
+          orders
+        </button>
+        <button
+          class="nav-link"
+          id="nav-contact-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-contact"
+          type="button"
+          role="tab"
+          aria-controls="nav-contact"
+          aria-selected="false"
+        >
+          Contact
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="nav-home"
+        role="tabpanel"
+        aria-labelledby="nav-home-tab"
+      >
+      ...
+      </div>
+      <div
+        class="tab-pane fade"
+        id="nav-profile"
+        role="tabpanel"
+        aria-labelledby="nav-profile-tab"
+      >
+        <% if(order.length>0){%>
+
+        <br />
+        <br />
+        <br />
+
+        <%for(let orders of order){ %> <% let product=orders.cart[0].product %>
+
+        <div class="container">
+          <p
+            style="
+              background-color: darkslategrey;
+              color: aliceblue;
+              text-align: center;
+            "
+          >
+            order number <%=order.indexOf(orders)%>
+          </p>
+          <table class="table">
+            <thead style="text-align: center; background-color: darkgray">
+              <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>adress</th>
+                <th>orderprice</th>
+                <th>product name</th>
+                <th>date</th>
+              </tr>
+            </thead>
+            <tbody style="text-align: center">
+              <tr>
+                <th><%=order.indexOf(orders)%></th>
+                <td><%=orders.username%></td>
+                <td><%=orders.address%></td>
+                <td><%=orders.orderprice%></td>
+                <td>
+                  <%for(let products of product){%>
+                  (<%=products.name%>&&qnt:<%=products.qnt%>)<br />
+
+                  <%}%>
+                </td>
+                <td><%=(orders.createdAt.toString().slice(0,20))%></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <%}%> <%}else{%>
+        <h3>no order</h3>
+      </div>
+
+      <%}%>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="nav-contact"
+      role="tabpanel"
+      aria-labelledby="nav-contact-tab"
+      style="margin-right: 20px"
+    >
+      ...
+      <div
+        id="details"
+        style="background-color: steelblue; color: beige"
+        class="container"
+      >
+        <div class="row row">
+          <div class="col-6 col-sm-3"><p class="fw-bold">name:</p></div>
+          <div class="col-6 col-sm-3"><p class="font-weight-bold">omar</p></div>
+          <div class="w-100"></div>
+
+          <div class="col-6 col-sm-3"><p class="fw-bold">emai:</p></div>
+          <div class="col-6 col-sm-3">
+            <p class="font-weight-bold">omar@omar.com</p>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-6 col-sm-3"><p class="fw-bold">password</p></div>
+          <div class="col-6 col-sm-3"><p class="font-weight-bold">####</p></div>
+
+          <div class="w-100"></div>
+          <div class="col-6 col-sm-3"><p class="fw-bold">address</p></div>
+          <div class="col-6 col-sm-3">
+            <p class="font-weight-bold">minya</p>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-6 col-sm-3"><p class="fw-bold">telephone</p></div>
+          <div class="col-6 col-sm-3">
+            <p class="font-weight-bold">0123123</p>
+          </div>
+        </div>
+        
+        <button onclick="" id="update" class="btn btn-primary">update</button>
+      </div>
+      
+      <form class="form-group d-none" id="formupdate"  action="/users/update" method="post">
+        <%if (valerr.length>0){%>
+         
+          <p class="alert alert-danger"><%=valerr[0].msg%></p>
+         
+          <%}%>
+
+          <input type="hidden" name="_csrf" value="<%=token%>">
+          <div>
+          <label for="formgroupinput1"> enter name</label>
+
+          <input
+            id="formgroupinput1"
+            class="form-control"
+            type="text"
+            placeholder="enter name"
+            name="name"
+          />
+        </div>
+        <div>
+          <label for="formgroupinput1"> enter address</label>
+
+          <input
+            id="formgroupinput1"
+            class="form-control"
+            type="text"
+            placeholder="enter address"
+            name="address"
+          />
+        </div>
+        <div>
+          <label for="formgroupinput1"> enter password</label>
+
+          <input
+            id="formgroupinput1"
+            class="form-control"
+            type="text"
+            placeholder="enter address"
+            name="password"
+          />
+        </div>
+        <div>
+          <label for="formgroupinput1"> confirm password</label>
+
+          <input
+            id="formgroupinput1"
+            class="form-control"
+            type="text"
+            placeholder="confirm password"
+            name="confirm-password"
+          />
+        </div>
+        <button  type="submit" class="btn btn-success"> save</button>
+      </form>
+    </div>
+
+    <%- include('parts/footer') %>
+    <script>
+
+
+if(document.getElementById('validationerr').value=="true"){
+  document.getElementById("details").classList.add("d-none");
+        document.getElementById("formupdate").classList.remove("d-none")
+
+}
+      let imagefile = document.getElementById("imagefile");
+      let image = document.getElementById("image");
+
+      imagefile.onchange = function () {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onload = function () {
+          image.src = this.result;
+          imagefile.classList.add("d-none");
+          document.getElementById("saveimage").classList.remove("d-none");
+        };
+      };
+      let update_button = document.getElementById("update");
+      let formupdate = document.getElementById("updateform");
+
+      update_button.onclick = function () {
+        //  on click hiden user details and show forms
+
+        document.getElementById("details").classList.add("d-none");
+        document.getElementById("formupdate").classList.remove("d-none");
+      };
+    </script>
+  </div>
+</div>

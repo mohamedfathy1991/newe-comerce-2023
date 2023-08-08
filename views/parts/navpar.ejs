@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/myorder">my-order</a>
+          </li>
+          
+         
+
+        </ul>
+   <% if(cart){%>
+    <i class='fas fa-bell' style='font-size:15px;color:rgb(128, 73, 0)'></i>
+
+        <span   style="margin-right: 15px; width:20px ;background-color:rgb(128, 73, 0);" class="badge badge-pill badge "><a style="font-size: larger; color:white;" href="/cart"><%=cart.qnt %><a></a></span>
+
+
+    <%}%>
+        
+
+        <form class="d-flex" method="GET" action="/home">
+          <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav rh mb-2 ">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              menu
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% if(!checklogin){%>
+              <li class="dropdown-item">
+                <a  href="/users/sinup"> Sign-uP <i class="fa-sharp fa-regular fa-user"></i></a>
+              </li>
+
+              <li class="dropdown-item">
+                <a  href="/users/sinin">Sign-in</a>
+              </li>
+              <%}%>
+              <% if(checklogin){%>
+              <li class="dropdown-item">
+                <a  href="/users/logout">logout</a>
+              </li>
+              <%}%>
+            </ul>
+          </li>
+          
+          </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <i class="fa-regular fa-cart-shopping"></i>
