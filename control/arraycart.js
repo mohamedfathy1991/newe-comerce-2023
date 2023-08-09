@@ -144,7 +144,6 @@ exports.checkout = (req, res, next) => {
             .deletcard(req.user._id, res, next)
             .then(() => {
 
-              console.log('payment successnodemon')
               req.flash("payment", "success payment");
               res.redirect("/");
             })
