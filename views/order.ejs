@@ -5,18 +5,32 @@
 <div style="padding-left: 20px" class="row">
   <div class="details col col-2">
     <h3>username</h3>
+    <%if(erruploadphoto.length>0){%>
+      <div class="alert alert-danger">
+        <%=erruploadphoto[0]%>
+
+      </div>
+      <%}%>
     <img
       id="image"
+
       style="width: 200px"
-      src="	https://www.nretnil.com/avatar/LawrenceEzekielAmos.png"
+      
+      src= "/profileimage/<%=person.image%>"
+
+      src=  "	https://www.nretnil.com/avatar/LawrenceEzekielAmos.png"
       alt="..."
     />
     <br /><br /><br />
-    <input type="file" id="imagefile" />
+    <form method="post" enctype="multipart/form-data" action="users/upload-image">
+      <input type="hidden" name="_csrf" value="<%=token%> ">
+
+    <input name="image" type="file" id="imagefile" accept="image/jpeg" />
     <div id="saveimage" class="d-none">
-      <a class="btn btn-success">save</a>
+      <button class="btn btn-success" type="submit">save</button>
       <a href="/myorder" class="btn btn-danger">cancle</a>
     </div>
+    </form>
   </div>
 
   <div class="order col col-9 offset-1">
@@ -143,21 +157,21 @@
       >
         <div class="row row">
           <div class="col-6 col-sm-3"><p class="fw-bold">name:</p></div>
-          <div class="col-6 col-sm-3"><p class="font-weight-bold">omar</p></div>
+          <div class="col-6 col-sm-3"><p class="font-weight-bold"><%=person.name%></p></div>
           <div class="w-100"></div>
 
           <div class="col-6 col-sm-3"><p class="fw-bold">emai:</p></div>
           <div class="col-6 col-sm-3">
-            <p class="font-weight-bold">omar@omar.com</p>
+            <p class="font-weight-bold"><%=person.email%></p>
           </div>
           <div class="w-100"></div>
           <div class="col-6 col-sm-3"><p class="fw-bold">password</p></div>
-          <div class="col-6 col-sm-3"><p class="font-weight-bold">####</p></div>
+          <div class="col-6 col-sm-3"><p class="font-weight-bold">##***</p></div>
 
           <div class="w-100"></div>
           <div class="col-6 col-sm-3"><p class="fw-bold">address</p></div>
           <div class="col-6 col-sm-3">
-            <p class="font-weight-bold">minya</p>
+            <p class="font-weight-bold"><%=person.address%></p>
           </div>
           <div class="w-100"></div>
           <div class="col-6 col-sm-3"><p class="fw-bold">telephone</p></div>
@@ -166,7 +180,7 @@
           </div>
         </div>
         
-        <button onclick="" id="update" class="btn btn-primary">update</button>
+        <button  id="update" class="btn btn-primary">update</button>
       </div>
       
       <form class="form-group d-none" id="formupdate"  action="/users/update" method="post">
@@ -222,7 +236,10 @@
           />
         </div>
         <button  type="submit" class="btn btn-success"> save</button>
+        <a id="cancelupdate"  class="btn btn-success"> cancel</a>
+
       </form>
+
     </div>
 
     <%- include('parts/footer') %>
@@ -248,12 +265,18 @@ if(document.getElementById('validationerr').value=="true"){
       };
       let update_button = document.getElementById("update");
       let formupdate = document.getElementById("updateform");
+      let cancelupdate= document.getElementById('cancelupdate')
 
       update_button.onclick = function () {
         //  on click hiden user details and show forms
 
         document.getElementById("details").classList.add("d-none");
         document.getElementById("formupdate").classList.remove("d-none");
+      };
+      cancelupdate.onclick=function () {
+        //  on click hiden user details and show forms
+        document.getElementById("details").classList.remove("d-none");
+        document.getElementById("formupdate").classList.add("d-none");;
       };
     </script>
   </div>

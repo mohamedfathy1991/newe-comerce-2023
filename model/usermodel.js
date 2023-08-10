@@ -7,7 +7,9 @@ const userschema = mongoose.Schema({
   name: { type: String, required: [true, "enter"], minlength: 3 },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  address:String
+  address:String,
+  image:{type:String,required:true,
+       default:"149071.png"}
 });
 userschema.methods.hashpassword = function(password){//new add methods in schema
   return bcrypt.hashSync(password,10)
@@ -66,4 +68,27 @@ let user=      await User.updateOne({ _id: id }, { $set: userupdate  });
   }
 
 }
+exports.uploadimage=async( id,image)=>{
+  console.log(image)
+  console.log(id)
+
+          try{
+            await mongoose.connect(db_url)
+
+            let images={image:image}
+
+
+
+         await   User.updateOne({_id:id},{image:image})
+         
+      
+
+
+          mongoose.disconnect()
+          return 
+          }catch(err){
+            throw err
+          }
+}
+
 exports.User=mongoose.model("users", userschema)

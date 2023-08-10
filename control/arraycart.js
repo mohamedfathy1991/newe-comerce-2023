@@ -56,7 +56,6 @@ exports.deletproduct = (req, res, next) => {
   console.log("delet product");
   let productindex = req.params.index;
   let userid = req.user._id;
-  console.log(productindex);
 
   cartmodel
     .deletproduct(userid, productindex, req)

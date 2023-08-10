@@ -7,11 +7,14 @@ exports.getorder=(req,res,next)=>{
         
      
       let valerr = req.flash("valerr")
+
+      let erruploadphoto= req.flash('erruploadphoto')
+      
       let validationerr= false
       if(valerr.length>0 ){validationerr=true}
 
         res.render('order',{token:token,person:req.user,order:result,checklogin:true,cart:req.user.cart[0]||null
-            ,validationerr:validationerr,valerr:valerr})
+           , erruploadphoto :erruploadphoto  ,validationerr:validationerr,valerr:valerr})
     }).catch(err=>{
         console.log(err)
         res.redirect('/')

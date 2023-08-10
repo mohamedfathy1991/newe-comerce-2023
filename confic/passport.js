@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     await mongoose.connect(db_url);
-    let user = await User.User.findOne({ _id: id },{email:true,name:true,_id:true});
+    let user = await User.User.findOne({ _id: id },{email:true,name:true,_id:true,image:true});
     let usercart = await Cart.Cart.find({ userid: id });
        if(usercart){
         user.cart= usercart

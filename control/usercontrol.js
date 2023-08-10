@@ -65,3 +65,11 @@ exports.updateuser=(req,res,next)=>{
 })
 
 }
+
+exports.uploadimage=(req,res,next)=>{
+    usermodel.uploadimage(req.user.id,req.file.filename).then(()=>{
+        
+        res.redirect('/myorder')
+    }).catch(err=>{
+res.json(err)    })
+  }
