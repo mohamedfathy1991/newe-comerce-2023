@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt= require('bcrypt')
 
 const db_url = process.env.DB_URL;
+const fs= require('fs')
 
 const userschema = mongoose.Schema({
   name: { type: String, required: [true, "enter"], minlength: 3 },
@@ -47,7 +48,8 @@ exports.adduser = async (userd) => {
 
 
 
-exports.updateuser= async (newuser,id)=>{
+exports.updateuser= async (newuser,id,olduserimage)=>{
+ 
   try{
     await mongoose.connect(db_url)
   let userupdate= {
@@ -68,18 +70,25 @@ let user=      await User.updateOne({ _id: id }, { $set: userupdate  });
   }
 
 }
-exports.uploadimage=async( id,image)=>{
-  console.log(image)
-  console.log(id)
+exports.uploadimage=async( id,image,imageoldimage)=>{
 
+
+  
+ 
           try{
+            
+
+            
             await mongoose.connect(db_url)
 
             let images={image:image}
+            
 
 
 
          await   User.updateOne({_id:id},{image:image})
+         
+         
          
       
 

@@ -65,11 +65,27 @@ exports.updateuser=(req,res,next)=>{
 })
 
 }
+const fs = require('fs')
 
 exports.uploadimage=(req,res,next)=>{
-    usermodel.uploadimage(req.user.id,req.file.filename).then(()=>{
+    let oldimage=  req.user.image
+    
+
+    usermodel.uploadimage(req.user.id,req.file.filename, req.user.image).then(()=>{ 
+        fs.unlink(`public/profileimage/${oldimage}`,(err)=>{
+            if(err){
+                console.log(err)
+                res.redirect('/myorder')
+
+            }
+            else{
+                res.redirect('/myorder')
+
+            }
+ 
+        })  
         
-        res.redirect('/myorder')
+        
     }).catch(err=>{
 res.json(err)    })
   }

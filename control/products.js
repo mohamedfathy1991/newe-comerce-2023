@@ -1,4 +1,5 @@
 const productmodel = require("../model/products");
+const path=require('path')
 
 exports.addproduct = (req, res, next) => {
   console.log(req.user);
@@ -18,7 +19,6 @@ exports.addproduct = (req, res, next) => {
     });
 };
 exports.getproduct = (req, res, next) => {
-
 console.log(req.user)
   let cart = null;
   if (req.isAuthenticated()) {
